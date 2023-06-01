@@ -1,0 +1,48 @@
+template:
+  name: Read SNOW ChangeRequest
+  type: Stage
+  spec:
+    type: Custom
+    spec:
+      execution:
+        steps:
+          - step:
+              type: Http
+              name: ReadStatus
+              identifier: ReadStatus
+              spec:
+                url: https://<+spec.inputVariables.snow_instance_name>.service-now.com/api/now/table/change_request?sysparm_query=task_effective_number%253D<+spec.inputVariables.change_request_id>&sysparm_limit=1
+                method: GET
+                headers:
+                  - key: Accept
+                    value: application/json
+                  - key: Authorization
+                    value: Basic <+secrets.getValue("Snow_Bearer_Token")>
+                inputVariables:
+                  - name: snow_instance_name
+                    value: <+input>
+                    type: String
+                  - name: change_request_id
+                    value: <+input>
+                    type: String
+                outputVariables:
+                  - name: snow_status
+                    value: <+json.list("result", httpResponseBody).get(0).phase_state>
+                    type: String
+              timeout: 5m
+          - step:
+              type: ShellScript
+              name: Output change request status
+              identifier: ShellScript_1
+              spec:
+                shell: Bash
+                onDelegate: true
+                source:
+                  type: Inline
+                  spec:
+                    script: echo <+pipeline.stages.ReadStatus.spec.execution.steps.ReadStatus.output.outputVariables.snow_status>
+                environmentVariables: []
+                outputVariables: []
+              timeout: 10m
+  identifier: Read_SNOW_ChangeRequest
+  versionLabel: "1"

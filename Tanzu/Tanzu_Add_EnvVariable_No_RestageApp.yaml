@@ -1,0 +1,20 @@
+template:
+  name: Tanzu_Add_EnvVariable
+  type: Step
+  spec:
+    type: TanzuCommand
+    timeout: 5m
+    spec:
+      script:
+        store:
+          type: Inline
+          spec:
+            content: |-
+              cf env <+pcf.activeAppName>
+              cf set-env <+pcf.activeAppName> {VariableName} {VariableValue}
+              cf env <+pcf.activeAppName>
+  identifier: Tanzu_Add_EnvVariable
+  versionLabel: NoRestage
+
+# Replace {VariableName} and {VariableValue}  with the variable name you need.
+# Note this step can be configured in Tanzu stage only
