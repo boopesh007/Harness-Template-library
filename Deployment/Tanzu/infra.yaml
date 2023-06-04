@@ -1,0 +1,13 @@
+infrastructureDefinition:
+  name: infra_bg
+  identifier: infra
+  description: "This is my PROD space"
+  tags: {}
+  environmentRef: TasAccEnv
+  deploymentType: TAS
+  type: TAS
+  spec:
+    connectorRef: <+input>
+    organization: <+input>
+    space: <+input>
+  allowSimultaneousDeployments: false

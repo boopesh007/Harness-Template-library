@@ -1,0 +1,65 @@
+template:
+  name: Tanzu-Blue-Green-Deployment
+  type: Stage
+  spec:
+    type: Deployment
+    spec:
+      deploymentType: TAS
+      execution:
+        steps:
+          - step:
+              name: BG App Setup
+              identifier: BGAppSetup
+              type: BGAppSetup
+              timeout: 10m
+              spec:
+                tasInstanceCountType: FromManifest
+                existingVersionToKeep: 3
+                additionalRoutes: []
+                tempRoutes: <+input>
+          - step:
+              name: App Resize
+              identifier: AppResize
+              type: AppResize
+              timeout: 10m
+              spec:
+                newAppInstances:
+                  type: Percentage
+                  spec:
+                    value: 100
+                oldAppInstances:
+                  type: Percentage
+                  spec:
+                    value: 50
+          - step:
+              name: Swap Routes
+              identifier: SwapRoutes
+              type: SwapRoutes
+              timeout: 10m
+              spec:
+                downSizeOldApplication: true
+        rollbackSteps:
+          - step:
+              name: Swap Rollback
+              identifier: SwapRollback
+              type: SwapRollback
+              timeout: 10m
+              spec:
+                upsizeInActiveApp: true
+      service:
+        serviceRef: <+input>
+        serviceInputs: <+input>
+      environment:
+        environmentRef: <+input>
+        deployToAll: false
+        environmentInputs: <+input>
+        serviceOverrideInputs: <+input>
+        infrastructureDefinitions: <+input>
+    failureStrategies:
+      - onFailure:
+          errors:
+            - AllErrors
+          action:
+            type: StageRollback
+  versionLabel: Basic
+  identifier: TanzuBlueGreenDeployment

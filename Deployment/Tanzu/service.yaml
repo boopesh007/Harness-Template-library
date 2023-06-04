@@ -1,0 +1,30 @@
+service:
+  name: TanzuApp
+  identifier: TanzuApp
+  tags: {}
+  serviceDefinition:
+    spec:
+      manifests:
+        - manifest:
+            identifier: TanzuAppManifest
+            type: TasManifest
+            spec:
+              cfCliVersion: V7
+              store:
+                type: Github
+                spec:
+                  connectorRef: account.HarnessTemplateLibrary
+                  gitFetchType: Branch
+                  paths:
+                    - Deployment/Tanzu/BlueGreen/manifest.yaml
+                  branch: main
+              varsPaths:
+                - Deployment/Tanzu/BlueGreen/vars.yaml
+      artifacts:
+        primary:
+          spec:
+            connectorRef: <+input>
+            imagePath: <+input>
+            tag: <+input>
+          type: DockerRegistry
+    type: TAS
