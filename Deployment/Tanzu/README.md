@@ -13,7 +13,7 @@ Creating Tanzu connector that will connect Harness to your TAZ infrastructure in
 ### Service onboarding
 ### Steps
 **1. Artifact source configuration**  
-The build job of you code would you have pushed the output which is the artifact to a artifact repository. Usually it will be container registries like Docker hub, Azure Container Registry, Google Cloud registry etc. The artifact in such cases would be the docker image. Depending on your artifact repository, you need to connect the respective artifact repository onto Harness. You can create your artifact repository connector in the connector section of your project or at the account resources section.  
+The build job on your code would you have pushed the output which is the artifact to a artifact repository. Usually it will be container registries like Docker hub, Azure Container Registry, Google Cloud registry etc. The artifact in such cases would be the docker image. Depending on your artifact repository, you need to connect the respective artifact repository onto Harness. You can create your artifact repository connector in the connector section of your project or at the account resources section.  
 
 **2.** **Onboarding the service onto Harness**  
 Now you are ready with your artifact which needs to be deployed. We need to onboard the service onto Harness.
