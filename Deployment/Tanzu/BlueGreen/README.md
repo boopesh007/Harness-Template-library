@@ -21,4 +21,5 @@ Please follow the instructions at the Tanzu section to complete the pre-requisit
 * Provide "**Name**, **version**"
 * Select **Harness-Template-Library** in the Git Connector, Once you select it should prefill your repository and git branch details. 
 * Provide "**Deployment/Tanzu/BlueGreen/blue_green_deployment.yaml**" in the YAML path.  
-4.You can edit the template values if you want to. Switch to the visual mode to have a better experience while updating the values. 
+
+4. You can edit the template values if you want to. Switch to the visual mode to have a better experience while updating the values. 
