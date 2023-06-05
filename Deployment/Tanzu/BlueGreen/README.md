@@ -1,6 +1,7 @@
 ## Tanzu application blue green deployment 
 ### What is a blue-green deployment ?
-![image](https://github.com/boopesh007/Harness-Template-library/assets/68562380/d4662c28-efe3-4a2e-ad58-7b675f176845)
+![image](https://github.com/boopesh007/Harness-Template-library/assets/68562380/d4662c28-efe3-4a2e-ad58-7b675f176845)  
+
 Blue-Green is about having two identical environments called “blue” (aka staging) and “green” (aka production) run simultaneously with different versions of service/artifact. QA and UAT are typically done in the blue environment. When satisfied, traffic is flipped (via a load balancer) from the green environment (current version) to the blue environment (new version). You then have the option of decommissioning the old environment or rolling back to it should your deployment succeed or fail.
 ### Pre-Requisites steps
 Please follow the instructions at the Tanzu section to complete the pre-requisites.  
