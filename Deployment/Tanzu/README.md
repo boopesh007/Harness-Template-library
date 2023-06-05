@@ -1,5 +1,6 @@
 ## Tanzu application
 ### What is a Tanzu application 
+![image](https://github.com/boopesh007/Harness-Template-library/assets/68562380/fc89e14b-e3f7-4253-9e83-ea0162afb6ee)
 What is a Tanzu application platform ?
 Tanzu is a suite of products that helps users run and manage multiple Kubernetes (K8s) clusters across public and private “clouds”. While introducing Kubernetes as a first class VMware product, it still keeps strong ties to the VMware virtualization portfolio. It consists of:
 ### Pre-Requisites 
